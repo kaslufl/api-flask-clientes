@@ -16,3 +16,6 @@ class ClienteModel(db.Model):
         self.razao_social = razao_social
         self.cnpj = cnpj
         self.data_inclusao = data_inclusao
+    
+    def __repr__(self):
+        return f"Cliente(nome = {nome}, razão social = {razao_social}, cnpj = {cnpj}, data de inclusão = {data_inclusao})"
