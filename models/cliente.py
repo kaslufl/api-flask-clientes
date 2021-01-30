@@ -19,3 +19,14 @@ class ClienteModel(db.Model):
     
     def __repr__(self):
         return f"Cliente(nome = {nome}, razão social = {razao_social}, cnpj = {cnpj}, data de inclusão = {data_inclusao})"
+
+    @classmethod
+    def pega_id_livre(self):
+        codigo = self.query.count()
+        if codigo:
+            return codigo
+        return 0
+    
+    def salva_cliente(self):
+        db.session.add(self)
+        db.session.commit()
