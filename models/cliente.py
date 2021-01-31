@@ -4,14 +4,13 @@ from datetime import date
 class ClienteModel(db.Model):
     __tablename__ = 'cliente'
     
-    codigo = db.Column(db.Integer, primary_key=True)
+    codigo = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(100), nullable=False)
     razao_social = db.Column(db.String(100), nullable=False)
     cnpj = db.Column(db.String(12), nullable=False)
     data_inclusao = db.Column(db.DateTime, nullable=False)
 
-    def __init__(self, codigo, nome, razao_social, cnpj, data_inclusao):
-        self.codigo = codigo
+    def __init__(self, nome, razao_social, cnpj, data_inclusao):
         self.nome = nome
         self.razao_social = razao_social
         self.cnpj = cnpj
@@ -21,12 +20,10 @@ class ClienteModel(db.Model):
         return f"Cliente(nome = {nome}, razão social = {razao_social}, cnpj = {cnpj}, data de inclusão = {data_inclusao})"
 
     @classmethod
-    def pega_id_livre(cls):
-        codigo = cls.query.count()
-        if codigo:
-            return codigo
-        return 0
-    
+    def pega_data_atual(cls):
+        hoje = date.today()
+        return hoje
+
     def salva_cliente(self):
         db.session.add(self)
         db.session.commit()
@@ -37,3 +34,7 @@ class ClienteModel(db.Model):
         if result:
             return result
         return None
+
+    def deleta_cliente(self):
+        db.session.delete(self)
+        db.session.commit()
