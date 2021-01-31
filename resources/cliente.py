@@ -5,7 +5,12 @@ cliente_post_args = reqparse.RequestParser()
 cliente_post_args.add_argument("nome", type = str, help = "Nome do cliente precisa ser preenchido!", required = True)
 cliente_post_args.add_argument("razao_social", type = str, help = "Razão social do cliente precisa ser preenchido!", required = True)
 cliente_post_args.add_argument("cnpj", type = str, help = "CNPJ do cliente precisa ser preenchido!", required = True)
-#cliente_post_args.add_argument("data_inclusao",type = str, help = "Data de inclusão", required = True)
+
+cliente_patch_args = reqparse.RequestParser()
+cliente_patch_args.add_argument("nome", type = str, help = "Nome do cliente")
+cliente_patch_args.add_argument("razao_social", type = str, help = "Razão social")
+cliente_patch_args.add_argument("cnpj", type = str, help = "CNPJ do cliente")
+cliente_patch_args.add_argument("data_inclusao",type = str, help = "Data de inclusão")
 
 resource_fields = {
     'nome' : fields.String,
@@ -31,8 +36,27 @@ class Cliente_com_codigo(Resource):
             abort(404, message = "Cliente não encontrado")
         return result
 
+    @marshal_with(resource_fields)
     def patch(self, codigo):
-        pass
+        args = cliente_patch_args.parse_args()
+        result = ClienteModel.verifica_codigo(codigo)
+        if not result:
+            abort(404, message = "Cliente não encontrado")
+
+        if args['nome']:
+            result.nome = args['nome']
+        
+        if args['razao_social']:
+            result.razao_social = args['razao_social']
+        
+        if args['cnpj']:
+            result.cnpj = args['cnpj']
+        
+        if args['data_inclusao']:
+            result.data_inclusao = args['data_inclusao']
+        
+        result.salva_cliente()
+        return result
 
     def delete(self, codigo):
         result = ClienteModel.verifica_codigo(codigo)
