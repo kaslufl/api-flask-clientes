@@ -15,9 +15,6 @@ resource_fields = {
 }
 
 class Cliente(Resource):
-    def get(self):
-        pass
-
     @marshal_with(resource_fields)
     def post(self):
         codigo = ClienteModel.pega_id_livre()
@@ -26,8 +23,18 @@ class Cliente(Resource):
         cliente.salva_cliente()
         return cliente, 201 #Created
 
+class Cliente_com_codigo(Resource):
+    @marshal_with(resource_fields)
+    def get(self, codigo):
+        result = ClienteModel.verifica_codigo(codigo)
+        if not result:
+            abort(404, message = "Cliente não encontrado")
+        return result
+
     def patch(self, codigo):
         pass
 
     def delete(self, codigo):
         pass
+
+    #Continua AQUI

@@ -21,8 +21,8 @@ class ClienteModel(db.Model):
         return f"Cliente(nome = {nome}, razão social = {razao_social}, cnpj = {cnpj}, data de inclusão = {data_inclusao})"
 
     @classmethod
-    def pega_id_livre(self):
-        codigo = self.query.count()
+    def pega_id_livre(cls):
+        codigo = cls.query.count()
         if codigo:
             return codigo
         return 0
@@ -30,3 +30,10 @@ class ClienteModel(db.Model):
     def salva_cliente(self):
         db.session.add(self)
         db.session.commit()
+
+    @classmethod
+    def verifica_codigo(cls, codigo):
+        result = cls.query.filter_by(codigo = codigo).first()
+        if result:
+            return result
+        return None
