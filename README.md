@@ -8,23 +8,23 @@ API desenvolvida para a prova do programa Trainee Smart NX 2021.
 
 Para buscar todos os clientes:
 
-**GET** /cliente
+👉 **GET** /cliente
 
 Para buscar um cliente específico:
 
-**GET** /cliente/{codigo_cliente}
+👉 **GET** /cliente/{codigo_cliente}
 
 Para adicionar um cliente:
 
-**POST** /cliente?nome={nome_cliente}&razao_social={razao_cliente}&cnpj={cnpj_cliente}
+👉 **POST** /cliente?nome={nome_cliente}&razao_social={razao_cliente}&cnpj={cnpj_cliente}
 
 Para atualizar um cliente:
 
-**PATCH** /cliente/{codigo_cliente}?nome={nome_cliente}&razao_social={razao_cliente}&cnpj={cnpj_cliente}
+👉 **PATCH** /cliente/{codigo_cliente}?nome={nome_cliente}&razao_social={razao_cliente}&cnpj={cnpj_cliente}
 
 Para deletar um cliente:
 
-**DEL** /cliente/{codigo_cliente}
+👉 **DEL** /cliente/{codigo_cliente}
 
 ---
 
@@ -32,23 +32,23 @@ Para deletar um cliente:
 
 Abra um terminal e instale o virtualenv com o comando:
 
-pip install virtualenv
+👉 pip install virtualenv
 
 Inicie um ambiente virtual na pasta do projeto:
 
-virtualenv nome_do_ambiente
+👉 virtualenv nome_do_ambiente
 
 Ative o ambiente virtual:
 
-.\nome_do_ambiente\Scripts\activate
+👉 .\nome_do_ambiente\Scripts\activate
 
 Instale os requerimentos:
 
-pip install -r requirements.txt
+👉 pip install -r requirements.txt
 
 Após a intalação podemos rodar a api:
 
-python app.py
+👉 python app.py
 
 ---
 
