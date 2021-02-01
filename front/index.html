@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"
     <title>Consulta Clientes</title>
 </head>
 <body>
@@ -12,13 +12,15 @@
             <label for="codigo">Código:</label>
             <input id="codigo">
             <small>GET</small>
-            <table>
-                <tr>
-                    <th>Nome</th>
-                    <th>Razão Social</th>
-                    <th>CNPJ</th>
-                    <th>Data Inclusão</th>
-                </tr>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope = "col">Nome</th>
+                        <th scope = "col">Razão Social</th>
+                        <th scope = "col">CNPJ</th>
+                        <th scope = "col">Data Inclusão</th>
+                    </tr>
+                </thead>
                 <td><input id="nome"></td>
                 <td><input id="razao_social"></td>
                 <td><input id="cnpj"></td>
@@ -26,9 +28,6 @@
             </table>
     </form>
     </section>
-    <div class="container">
-        
-    </div>
     <script src="src/js/main.js"></script>
 </body>
 </html>
