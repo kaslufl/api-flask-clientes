@@ -19,6 +19,15 @@ class ClienteModel(db.Model):
     def __repr__(self):
         return f"Cliente(nome = {nome}, razão social = {razao_social}, cnpj = {cnpj}, data de inclusão = {data_inclusao})"
 
+    def json(self):
+        return {
+            'codigo': self.codigo,
+            'nome': self.nome,
+            'razao_social': self.razao_social,
+            'cnpj': self.cnpj,
+            'data_inclusao': self.data_inclusao.isoformat()
+        }
+
     @classmethod
     def pega_data_atual(cls):
         hoje = date.today()

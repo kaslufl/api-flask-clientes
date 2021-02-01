@@ -13,6 +13,7 @@ cliente_patch_args.add_argument("cnpj", type = str, help = "CNPJ do cliente")
 cliente_patch_args.add_argument("data_inclusao",type = str, help = "Data de inclusão")
 
 resource_fields = {
+    'codigo' : fields.Integer,
     'nome' : fields.String,
     'razao_social' : fields.String,
     'cnpj' : fields.String,
@@ -27,6 +28,9 @@ class Cliente(Resource):
         cliente = ClienteModel(nome = args['nome'], razao_social = args['razao_social'], cnpj = args['cnpj'], data_inclusao = hoje)
         cliente.salva_cliente()
         return cliente, 201 #Created
+
+    def get(self):
+        return {'clientes': [cliente.json() for cliente in ClienteModel.query.all()]}
 
 class Cliente_com_codigo(Resource):
     @marshal_with(resource_fields)
